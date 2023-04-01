@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center" align="center">
-    <h2 v-if="!loading" class="title">Mad Lib With GPT</h2>
+    <h2 v-if="!loading && !displayStory" class="title">Mad Lib With GPT</h2>
     <v-row v-if="!loading && !displayStory" justify="center" align="center" style="margin: 3%;">
       <div class="input-wrapper">
         <label for="input" class="label"></label>
@@ -92,8 +92,10 @@
     </div>
 
     <div v-if="displayStory">
+      <img :src="`${storyImage}`">
+
       <h2 class="story">
-        {{response}}
+        {{story}}
       </h2>
       <button class="neon-button-6" @click="reset">Restart</button>
     </div>
@@ -128,8 +130,8 @@ export default {
   },
   methods: {
     async submitForm() {
-      if (!this.checkInputFields) {
-        alert("Made it here")
+      if (this.checkInputFields()) {
+        alert("Please fill in all the input fields")
       }
       else {
         this.loading = true
@@ -152,13 +154,17 @@ export default {
         prompt += `Part of Body (plural): "${this.partOfTheBodyPlural}" \n`
         prompt += `Time Era/Period: "${this.timeEra}" \n`
 
-        this.response = await this.$store.dispatch('GPT/connect', {
-          prompt: prompt,
+        // this.story = await this.$store.dispatch('GPT/GPTconnect', {
+        //   prompt: prompt,
+        // })
+
+        imagePrompt = `A ${this.color} ${this.nounAnimal} with ${this.famousPerson} in a ${this.timeEra} style`
+
+        this.storyImage = await this.$store.dispatch('DALLE2/DALLE2connect', {
+          prompt: imagePrompt,
         })
 
-        alert(this.response)
-
-        // this.response = "Once upon a time, there was a bossy unicorn who crept through the frozen landscape of the Ice Age. The unicorn was always alone, until one day it met a dodo. The dodo was small and friendly, and it didn't seem to mind the unicorn's bossy ways. \nTogether, the unicorn and the dodo explored the snowy hills and icy caves, where they discovered many smooth and wild things. They went dancing in the snow and chased after the northern lights. The unicorn felt happy to have a friend.\nBut one day, the unicorn started to feel a strange emotion. It was lust, a feeling the unicorn had never experienced before. The unicorn didn't know what to do with these new feelings, so it turned to the dodo for help.\nThe dodo explained that lust was a normal emotion and that it was okay to feel new things. The unicorn felt better, knowing that it could talk to its friend about anything.\nFrom then on, the unicorn and the dodo continued their adventures, dancing and playing and exploring the icy wilderness together. And even though the unicorn was still a bit bossy at times, it had learned that having a friend was more important than being in charge all the time."
+        // this.story = "Once upon a time, there was a bossy unicorn who crept through the frozen landscape of the Ice Age. The unicorn was always alone, until one day it met a dodo. The dodo was small and friendly, and it didn't seem to mind the unicorn's bossy ways. \nTogether, the unicorn and the dodo explored the snowy hills and icy caves, where they discovered many smooth and wild things. They went dancing in the snow and chased after the northern lights. The unicorn felt happy to have a friend.\nBut one day, the unicorn started to feel a strange emotion. It was lust, a feeling the unicorn had never experienced before. The unicorn didn't know what to do with these new feelings, so it turned to the dodo for help.\nThe dodo explained that lust was a normal emotion and that it was okay to feel new things. The unicorn felt better, knowing that it could talk to its friend about anything.\nFrom then on, the unicorn and the dodo continued their adventures, dancing and playing and exploring the icy wilderness together. And even though the unicorn was still a bit bossy at times, it had learned that having a friend was more important than being in charge all the time."
 
         this.loading = false
         this.displayStory = true
@@ -166,22 +172,22 @@ export default {
     },
 
     checkInputFields() {
-      return (this.nounAnimal === '' &&
-              this.pluralNoun === '' &&
-              this.noun === '' &&
-              this.verb1 === '' &&
-              this.verb2 === '' &&
-              this.verb3 === '' &&
-              this.verbPastTense === '' &&
-              this.verbEndingING === '' &&
-              this.color === '' &&
-              this.adjective1 === '' &&
-              this.adjective2 === '' &&
-              this.famousPerson === '' &&
-              this.problem === '' &&
-              this.emotion === '' &&
-              this.partOfTheBodyPlural === '' &&
-              this.timeEra)
+      return (this.nounAnimal === '' ||
+              this.pluralNoun === '' ||
+              this.noun === '' ||
+              this.verb1 === '' ||
+              this.verb2 === '' ||
+              this.verb3 === '' ||
+              this.verbPastTense === '' ||
+              this.verbEndingING === '' ||
+              this.color === '' ||
+              this.adjective1 === '' ||
+              this.adjective2 === '' ||
+              this.famousPerson === '' ||
+              this.problem === '' ||
+              this.emotion === '' ||
+              this.partOfTheBodyPlural === '' ||
+              this.timeEra  === '')
     },
 
     reset() {
@@ -220,6 +226,7 @@ export default {
   font-size: 50px !important;
   font-weight: bold !important;
   color: #00ec00;
+  widows: 100%;
 }
 
 input[type="text"],
