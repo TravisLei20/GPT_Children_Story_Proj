@@ -15,7 +15,7 @@ const actions = {
     async DALLE2connect({}, {prompt}) {
         // Set up Axios request body
         const data = {
-            'prompt': prompt,
+            prompt: prompt,
             'num_images': 1,
             'size': '256x256',
             'response_format': 'url'

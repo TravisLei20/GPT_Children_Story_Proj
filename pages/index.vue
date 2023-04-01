@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center" align="center">
-    <h2 v-if="!loading && !displayStory" class="title">Mad Lib With GPT</h2>
+    <h2 v-if="!loading && !displayStory" class="title">Story Time With GPT</h2>
     <v-row v-if="!loading && !displayStory" justify="center" align="center" style="margin: 3%;">
       <div class="input-wrapper">
         <label for="input" class="label"></label>
@@ -92,7 +92,7 @@
     </div>
 
     <div v-if="displayStory">
-      <img :src="`${storyImage}`">
+      <img v-if="showImage" :src="`${storyImage}`">
 
       <h2 class="story">
         {{story}}
@@ -123,9 +123,13 @@ export default {
       emotion: 'fear',
       partOfTheBodyPlural: 'toes',
       timeEra: '80s',
+
       loading: false,
-      response: '',
-      displayStory: false
+      displayStory: false,
+      showImage: false,
+
+      story: '',
+      storyImage: '',
     };
   },
   methods: {
@@ -138,7 +142,7 @@ export default {
 
         // await new Promise(resolve => setTimeout(resolve, 5000));
 
-        prompt = `Make a children's story about a ${this.color} ${this.nounAnimal} with this input:\n`
+        prompt = `Make a children's story about a ${this.color} ${this.nounAnimal} with this input (like a Mad Lib):\n`
         prompt += `Plural Noun: "${this.pluralNoun}" \n`
         prompt += `Noun: "${this.noun}" \n`
         prompt += `Verb: "${this.verb1}" \n`
@@ -154,15 +158,21 @@ export default {
         prompt += `Part of Body (plural): "${this.partOfTheBodyPlural}" \n`
         prompt += `Time Era/Period: "${this.timeEra}" \n`
 
-        // this.story = await this.$store.dispatch('GPT/GPTconnect', {
-        //   prompt: prompt,
-        // })
+        this.story = await this.$store.dispatch('GPT/GPTconnect', {
+          prompt: prompt,
+        })
 
-        imagePrompt = `A ${this.color} ${this.nounAnimal} with ${this.famousPerson} in a ${this.timeEra} style`
+        prompt = `A ${this.color} ${this.nounAnimal} in a ${this.timeEra} style`
 
         this.storyImage = await this.$store.dispatch('DALLE2/DALLE2connect', {
-          prompt: imagePrompt,
+          prompt: prompt,
         })
+
+        if (this.storyImage === 'Error') {
+          this.showImage = false
+        } else {
+          this.showImage = true
+        }
 
         // this.story = "Once upon a time, there was a bossy unicorn who crept through the frozen landscape of the Ice Age. The unicorn was always alone, until one day it met a dodo. The dodo was small and friendly, and it didn't seem to mind the unicorn's bossy ways. \nTogether, the unicorn and the dodo explored the snowy hills and icy caves, where they discovered many smooth and wild things. They went dancing in the snow and chased after the northern lights. The unicorn felt happy to have a friend.\nBut one day, the unicorn started to feel a strange emotion. It was lust, a feeling the unicorn had never experienced before. The unicorn didn't know what to do with these new feelings, so it turned to the dodo for help.\nThe dodo explained that lust was a normal emotion and that it was okay to feel new things. The unicorn felt better, knowing that it could talk to its friend about anything.\nFrom then on, the unicorn and the dodo continued their adventures, dancing and playing and exploring the icy wilderness together. And even though the unicorn was still a bit bossy at times, it had learned that having a friend was more important than being in charge all the time."
 
@@ -207,8 +217,13 @@ export default {
       this.emotion = ''
       this.partOfTheBodyPlural = ''
       this.timeEra = ''
+
       this.loading = false
       this.displayStory = false
+      this.showImage = false
+
+      this.story = ''
+      this.storyImage = ''
     }
   },
 }
