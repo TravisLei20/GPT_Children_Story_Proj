@@ -12,7 +12,7 @@ const headers = {
   'Authorization': `Bearer ${API_KEY}`,
 };
 
-export const actions = {
+const actions = {
     async connect({}, {prompt}) {
         // Request Body
         const data = {
@@ -24,14 +24,20 @@ export const actions = {
             // 'frequency_penalty': 0,
             // 'presence_penalty': 0
         };
-        // Make Axios request
-        axios.post(API_URL, data, { headers })
-        .then(response => {
-        // console.log(response.data.choices[0].text);
-        console.log(response.data.choices[0].message.content);
-        })
-        .catch(error => {
-        console.error(error);
-        });
-    }, 
+        try {
+            // Make Axios request
+            const response = await axios.post(API_URL, data, { headers })
+            const messageContent = response.data.choices[0].message.content
+            // commit a mutation to update the state with the message content
+            // commit('SET_MESSAGE_CONTENT', messageContent);
+            // return the message content
+            return messageContent;
+        } catch (error) {
+            console.error(error);
+        }
+    } 
+};
+
+export default {
+    actions,
 }
