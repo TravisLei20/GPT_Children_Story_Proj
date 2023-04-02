@@ -28,13 +28,14 @@ const actions = {
             // Make Axios request
             const response = await axios.post(API_URL, data, { headers })
             const messageContent = response.data.choices[0].message.content
+            console.log("GPT response headers:")
+            console.log(response)
             // commit a mutation to update the state with the message content
             // commit('SET_MESSAGE_CONTENT', messageContent);
-            // return the message content
             return messageContent;
         } catch (error) {
             console.error(error);
-            return "Error";
+            return '';
         }
     } 
 };

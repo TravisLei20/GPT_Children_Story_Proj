@@ -32,7 +32,7 @@ const actions = {
             return messageContent;
         } catch (error) {
             console.error(error);
-            return "Error";
+            return '';
         }
     } 
 };
