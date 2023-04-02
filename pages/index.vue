@@ -158,7 +158,9 @@ export default {
 
         // await new Promise(resolve => setTimeout(resolve, 5000));
 
-        prompt = `Make a children's story about a ${this.color} ${this.nounAnimal} with this input (like a Mad Lib):\n`
+        prompt = `Make a children's Mad Lib about a(n) ${this.color} ${this.nounAnimal} with:\n`
+        prompt += "1 plural noun, 1 noun, 3 verbs, 1 verb (past tense), 1 verb ending with -ing, 2 adjectives, 1 famous person, 1 problem, 1 emotion, 1 part of the body (plural), 1 time era/period.\n\n"
+        prompt += "Now fill in those with these inputs:\n"
         prompt += `Plural Noun: "${this.pluralNoun}" \n`
         prompt += `Noun: "${this.noun}" \n`
         prompt += `Verb: "${this.verb1}" \n`
@@ -253,7 +255,7 @@ export default {
 }
 
 .title {
-  margin-top: 2%;
+  margin-top: 5%;
   font-size: 50px !important;
   font-weight: bold !important;
   color: #00ec00;

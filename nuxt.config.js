@@ -6,8 +6,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - GPT_Children_Story_Proj',
-    title: 'GPT_Children_Story_Proj',
+    titleTemplate: '%s - GPT_Story_Proj',
+    title: 'GPT_Story_Proj',
     htmlAttrs: {
       lang: 'en'
     },
