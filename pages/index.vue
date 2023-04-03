@@ -158,9 +158,7 @@ export default {
 
         // await new Promise(resolve => setTimeout(resolve, 5000));
 
-        prompt = `Make a children's Mad Lib about a(n) ${this.color} ${this.nounAnimal} with:\n`
-        prompt += "1 plural noun, 1 noun, 3 verbs, 1 verb (past tense), 1 verb ending with -ing, 2 adjectives, 1 famous person, 1 problem, 1 emotion, 1 part of the body (plural), 1 time era/period.\n\n"
-        prompt += "Now fill all of those with these inputs (leave now empty space):\n"
+        prompt = `Make a children's story about a(n) ${this.color} ${this.nounAnimal} with these words\n`
         prompt += `Plural Noun: "${this.pluralNoun}" \n`
         prompt += `Noun: "${this.noun}" \n`
         prompt += `Verb: "${this.verb1}" \n`
