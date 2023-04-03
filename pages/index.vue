@@ -4,67 +4,67 @@
     <v-row v-if="!loading && !displayStory" justify="center" align="center" style="margin: 3%;">
       <div class="input-wrapper">
         <label for="input" class="label"></label>
-        <input type="text" id="input" class="input" placeholder="Noun (animal/creature)" v-model="nounAnimal" required>
+        <input type="text" id="nounAnimal" class="input" placeholder="Noun (animal/creature)" v-model="nounAnimal" required>
       </div>
       <div class="input-wrapper">
         <label for="input" class="label"></label>
-        <input type="text" id="input" class="input" placeholder="Plural Noun" v-model="pluralNoun" required>
+        <input type="text" id="pluralNoun" class="input" placeholder="Plural Noun" v-model="pluralNoun" required>
       </div>
       <div class="input-wrapper">
         <label for="input" class="label"></label>
-        <input type="text" id="input" class="input" placeholder="Noun" v-model="noun" required>
+        <input type="text" id="noun" class="input" placeholder="Noun" v-model="noun" required>
       </div>
       <div class="input-wrapper">
         <label for="input" class="label"></label>
-        <input type="text" id="input" class="input" placeholder="Verb" v-model="verb1" required>
+        <input type="text" id="verb1" class="input" placeholder="Verb" v-model="verb1" required>
       </div>
       <div class="input-wrapper">
         <label for="input" class="label"></label>
-        <input type="text" id="input" class="input" placeholder="Verb" v-model="verb2" required>
+        <input type="text" id="verb2" class="input" placeholder="Verb" v-model="verb2" required>
       </div>
       <div class="input-wrapper">
         <label for="input" class="label"></label>
-        <input type="text" id="input" class="input" placeholder="Verb" v-model="verb3" required>
+        <input type="text" id="verb3" class="input" placeholder="Verb" v-model="verb3" required>
       </div>
       <div class="input-wrapper">
         <label for="input" class="label"></label>
-        <input type="text" id="input" class="input" placeholder="Verb (Past Tense)" v-model="verbPastTense" required>
+        <input type="text" id="verbPastTense" class="input" placeholder="Verb (Past Tense)" v-model="verbPastTense" required>
       </div>
       <div class="input-wrapper">
         <label for="input" class="label"></label>
-        <input type="text" id="input" class="input" placeholder="Verb ending in -ing" v-model="verbEndingING" required>
+        <input type="text" id="verbEndingING" class="input" placeholder="Verb ending in -ing" v-model="verbEndingING" required>
       </div>
       <div class="input-wrapper">
         <label for="input" class="label"></label>
-        <input type="text" id="input" class="input" placeholder="Color" v-model="color" required>
+        <input type="text" id="color" class="input" placeholder="Color" v-model="color" required>
       </div>
       <div class="input-wrapper">
         <label for="input" class="label"></label>
-        <input type="text" id="input" class="input" placeholder="Adjective" v-model="adjective1" required>
+        <input type="text" id="adjective1" class="input" placeholder="Adjective" v-model="adjective1" required>
       </div>
       <div class="input-wrapper">
         <label for="input" class="label"></label>
-        <input type="text" id="input" class="input" placeholder="Adjective" v-model="adjective2" required>
+        <input type="text" id="adjective2" class="input" placeholder="Adjective" v-model="adjective2" required>
       </div>
       <div class="input-wrapper">
         <label for="input" class="label"></label>
-        <input type="text" id="input" class="input" placeholder="Famous Person" v-model="famousPerson" required>
+        <input type="text" id="famousPerson" class="input" placeholder="Famous Person" v-model="famousPerson" required>
       </div>
       <div class="input-wrapper">
         <label for="input" class="label"></label>
-        <input type="text" id="input" class="input" placeholder="Problem" v-model="problem" required>
+        <input type="text" id="problem" class="input" placeholder="Problem" v-model="problem" required>
       </div>
       <div class="input-wrapper">
         <label for="input" class="label"></label>
-        <input type="text" id="input" class="input" placeholder="Emotion" v-model="emotion" required>
+        <input type="text" id="emotion" class="input" placeholder="Emotion" v-model="emotion" required>
       </div>
       <div class="input-wrapper">
         <label for="input" class="label"></label>
-        <input type="text" id="input" class="input" placeholder="Part of the body (plural)" v-model="partOfTheBodyPlural" required>
+        <input type="text" id="partOfTheBodyPlural" class="input" placeholder="Part of the body (plural)" v-model="partOfTheBodyPlural" required>
       </div>
       <div class="input-wrapper">
         <label for="input" class="label"></label>
-        <input type="text" id="input" class="input" placeholder="Time Period/Era" v-model="timeEra" required>
+        <input type="text" id="timeEra" class="input" placeholder="Time Period/Era" v-model="timeEra" required>
       </div>
       <button class="neon-button-6" @click="submitForm">Start Adventure!</button>
     </v-row>
