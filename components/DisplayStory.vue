@@ -1,6 +1,6 @@
 <template>
     <v-row>
-        <img v-if="dispalyImage" :src="`${storyImage}`">
+        <img v-if="dispalyImage" :src="`${storyImage}`" style="margin-top;: 2%">
         <h2 class="story">
             {{story}}
         </h2>
