@@ -150,6 +150,9 @@ export default {
   },
   methods: {
     async submitForm() {
+      alert("Sorry we are currently not running any adventures")
+      break;
+      
       if (this.checkInputFields()) {
         alert("Please fill in all the input fields")
       }
