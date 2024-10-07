@@ -2,8 +2,7 @@ import axios from 'axios';
 
 // const axios = require('axios');
 
-const API_KEY = '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';
-// const API_URL = 'https://api.openai.com/v1/engines/davinci-codex/completions';
+const API_KEY = 'api_key';
 const API_URL = 'https://api.openai.com/v1/chat/completions';
 
 // Set up Axios request headers
